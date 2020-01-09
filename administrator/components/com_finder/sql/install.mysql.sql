@@ -385,6 +385,8 @@ CREATE TABLE IF NOT EXISTS `#__finder_tokens_aggregate` (
 CREATE TABLE IF NOT EXISTS `#__finder_types` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
+  `dbtable` varchar(100) NOT NULL DEFAULT '' COMMENT 'The database table for that type',
+  `primary_key` varchar(100) NOT NULL DEFAULT '' COMMENT 'The primary key column of the database table',
   `mime` varchar(100) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `title` (`title`)

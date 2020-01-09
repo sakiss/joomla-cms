@@ -1222,10 +1222,15 @@ CREATE INDEX "_#__finder_tokens_aggregate_keyword_id" on "#__finder_tokens_aggre
 CREATE TABLE IF NOT EXISTS "#__finder_types" (
   "id" serial NOT NULL,
   "title" varchar(100) NOT NULL,
+  "dbtable" varchar(100) NOT NULL DEFAULT '',
+  "primary_key" varchar(100) NOT NULL DEFAULT '',
   "mime" varchar(100) DEFAULT '' NOT NULL,
   PRIMARY KEY ("id"),
   CONSTRAINT "#__finder_types_title" UNIQUE ("title")
 );
+
+COMMENT ON COLUMN "#__finder_types"."dbtable" IS 'The database table for that type';
+COMMENT ON COLUMN "#__finder_types"."primary_key" IS 'The primary key column of the database table';
 
 --
 -- Table structure for table `#__languages`
