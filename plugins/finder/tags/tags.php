@@ -64,6 +64,14 @@ class PlgFinderTags extends FinderIndexerAdapter
 	protected $table = '#__tags';
 
 	/**
+	 * The primary key name of the table
+	 *
+	 * @var string
+	 * @since  4.0
+	 */
+	protected $tablePrimaryKey = 'id';
+
+	/**
 	 * Load the language file on instantiation.
 	 *
 	 * @var    boolean

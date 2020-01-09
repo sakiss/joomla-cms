@@ -65,6 +65,14 @@ class PlgFinderContacts extends FinderIndexerAdapter
 	protected $table = '#__contact_details';
 
 	/**
+	 * The primary key name of the table
+	 *
+	 * @var string
+	 * @since  4.0
+	 */
+	protected $tablePrimaryKey = 'id';
+
+	/**
 	 * The field the published state is stored in.
 	 *
 	 * @var    string
