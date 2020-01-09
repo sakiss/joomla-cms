@@ -213,19 +213,21 @@ class Helper
 	/**
 	 * Method to add a content type to the database.
 	 *
-	 * @param   string  $title  The type of content. For example: PDF
-	 * @param   string  $mime   The mime type of the content. For example: PDF [optional]
+	 * @param   string  $title        The type of content. For example: PDF
+	 * @param   string  $dbtable      The name of the database table for that type. For example: #__content
+	 * @param   string  $primary_key  The primary key column of the table. For example: id
+	 * @param   string  $mime         The mime type of the content. For example: PDF [optional]
 	 *
 	 * @return  integer  The id of the content type.
 	 *
-	 * @since   2.5
 	 * @throws  Exception on database error.
+	 * @since   2.5
 	 */
-	public static function addContentType($title, $mime = null)
+	public static function addContentType($title, $dbtable, $primary_key, $mime = null)
 	{
 		static $types;
 
-		$db    = Factory::getDbo();
+		$db = Factory::getDbo();
 		$query = $db->getQuery(true);
 
 		// Check if the types are loaded.
@@ -249,8 +251,8 @@ class Helper
 		// Add the type.
 		$query->clear()
 			->insert($db->quoteName('#__finder_types'))
-			->columns(array($db->quoteName('title'), $db->quoteName('mime')))
-			->values($db->quote($title) . ', ' . $db->quote($mime));
+			->columns(array($db->quoteName('title'), $db->quoteName('dbtable'), $db->quoteName('primary_key'), $db->quoteName('mime')))
+			->values($db->quote($title) . ', ' . $db->quote($dbtable) . ', ' . $db->quote($primary_key) . ', ' . $db->quote($mime));
 		$db->setQuery($query);
 		$db->execute();
 
