@@ -108,6 +108,13 @@ abstract class Adapter extends CMSPlugin
 	protected $table;
 
 	/**
+	 * The primary key name of the table
+	 *
+	 * @var string
+	 */
+	protected $tablePrimaryKey;
+
+	/**
 	 * The indexer object.
 	 *
 	 * @var    Indexer
@@ -143,9 +150,9 @@ abstract class Adapter extends CMSPlugin
 		$this->type_id = $this->getTypeId();
 
 		// Add the content type if it doesn't exist and is set.
-		if (empty($this->type_id) && !empty($this->type_title))
+		if (empty($this->type_id) && !empty($this->type_title) && !empty($this->table) && !empty($this->tablePrimaryKey))
 		{
-			$this->type_id = Helper::addContentType($this->type_title, $this->mime);
+			$this->type_id = Helper::addContentType($this->type_title, $this->table, $this->tablePrimaryKey, $this->mime);
 		}
 
 		// Check for a layout override.
