@@ -110,11 +110,14 @@
       messageContainer = document.getElementById('system-message-container');
     }
 
-    const alerts = [].slice.call(messageContainer.querySelectorAll('joomla-alert'));
-    if (alerts.length) {
-      alerts.forEach((alert) => {
-        alert.close();
-      });
+    let alertComponents = messageContainer.querySelectorAll('joomla-alert');
+    if(alertComponents) {
+      const alerts = [].slice.call(alertComponents);
+      if (alerts.length) {
+        alerts.forEach((alert) => {
+          alert.close();
+        });
+      }
     }
   };
 
